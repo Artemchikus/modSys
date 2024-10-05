@@ -29,32 +29,22 @@ func f(n int) []float64 {
 	return r
 }
 
-func smirnov(n []float64) float64 {
+func smirnoff(n []float64) float64 {
 	slices.Sort(n)
 
-	dPlus := 0.0
-	dMinus := 0.0
+	d := 0.0
 	for i := 1; i <= len(n); i++ {
-		tmpPlus := float64(i)/float64(len(n)) - n[i-1]
-		if tmpPlus > dPlus {
-			dPlus = tmpPlus
-		}
-
-		tmpMinus := n[i-1] - float64(i-1)/float64(len(n))
-		if tmpMinus > dMinus {
-			dMinus = tmpMinus
+		tmpD := math.Abs(float64(i)/float64(len(n)) - n[i-1])
+		if tmpD > d {
+			d = tmpD
 		}
 	}
 
-	if dPlus > dMinus {
-		return dPlus
-	}
-
-	return dMinus
+	return d
 }
 
 func chiSquare(n []float64, dof int) float64 {
-	expected := len(n) / dof
+	expected := float64(len(n)) / float64(dof)
 
 	intervals := make([]float64, dof)
 
@@ -69,7 +59,7 @@ func chiSquare(n []float64, dof int) float64 {
 
 	chiSqr := 0.0
 	for _, v := range intervals {
-		chiSqr += (float64(v) - float64(expected)) * (float64(v) - float64(expected)) / float64(expected)
+		chiSqr += (float64(v) - expected) * (float64(v) - expected) / expected
 	}
 
 	return chiSqr
@@ -176,8 +166,8 @@ func main() {
 	dofA, _ := dof(18)
 	fmt.Printf("dofA: %v\n", dofA)
 
-	fmt.Printf("smirnov(fl): %v\n", smirnov(fl))
-	fmt.Printf("smirnov(fl2): %v\n", smirnov(fl2))
+	fmt.Printf("smirnov(fl): %v\n", smirnoff(fl))
+	fmt.Printf("smirnov(fl2): %v\n", smirnoff(fl2))
 
 	chSqr, _ := chi(10)
 	fmt.Printf("chiSqr: %v\n", chSqr)
