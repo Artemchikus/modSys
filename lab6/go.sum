@@ -1,0 +1,4 @@
+github.com/datastream/holtwinters v0.0.0-20181121060059-1de95a594e76 h1:QhDodgSjLXKbqix3lB/PhdNFy1GVwQZ/ybo//JItSHQ=
+github.com/datastream/holtwinters v0.0.0-20181121060059-1de95a594e76/go.mod h1:rXPt/6MeJ6VLvEX8qw8Ao5KfUCoWKWZhKGV+yIgs0R8=
+golang.org/x/text v0.19.0 h1:kTxAhCbGbxhK0IwgSKiMO5awPoDQ0RpfiVYBfK860YM=
+golang.org/x/text v0.19.0/go.mod h1:BuEKDfySbSR4drPmRPG/7iBdf8hvFMuRexcpahXilzY=
